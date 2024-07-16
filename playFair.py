@@ -8,31 +8,32 @@ class BibaBoba:
     def matrix(x,y,initial):
         return [[initial for i in range(x)] for j in range(y)]
 
-    def     
-    result=list()
-    for c in keys(key): #storing key
-        if c not in result:
-            if c=='J':
-                result.append('I')
-            else:
-                result.append(c)
-    flag=0
-    for i in range(65,91): #storing other character
-        if chr(i) not in result:
-            if i==73 and chr(74) not in result:
-                result.append("I")
-                flag=1
-            elif flag==0 and i==73 or i==74:
-                pass    
-            else:
-                result.append(chr(i))
-    k=0
-    my_matrix=matrix(5,5,0) #initialize matrix
-    for i in range(0,5): #making matrix
-        for j in range(0,5):
-            my_matrix[i][j]=result[k]
-            k+=1
-
+    def resultation():
+        result=list()
+        for c in keys(key): #storing key
+            if c not in result:
+                if c=='J':
+                    result.append('I')
+                else:
+                    result.append(c)
+        flag=0
+        for i in range(65,91): #storing other character
+            if chr(i) not in result:
+                if i==73 and chr(74) not in result:
+                    result.append("I")
+                    flag=1
+                elif flag==0 and i==73 or i==74:
+                    pass    
+                else:
+                    result.append(chr(i))
+        k=0
+        my_matrix=matrix(5,5,0) #initialize matrix
+        for i in range(0,5): #making matrix
+            for j in range(0,5):
+                my_matrix[i][j]=result[k]
+                k+=1
+        return my_matrix
+        
     def locindex(c): #get location of each character
         loc=list()
         if c=='J':
@@ -44,7 +45,7 @@ class BibaBoba:
                     loc.append(k)
                     return loc
                 
-    def encrypt():  #Encryption
+    def encrypt():
         msg=str(input("ENTER MSG: "))
         msg=msg.upper()
         msg=msg.replace(" ", "")             
