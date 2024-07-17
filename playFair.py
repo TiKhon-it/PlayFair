@@ -46,6 +46,8 @@ class BibaBoba:
                     return loc
                 
     def encrypt():
+        me_mat=list()
+        me_mat=resultation()
         msg=str(input("ENTER MSG: "))
         msg=msg.upper()
         msg=msg.replace(" ", "")             
@@ -63,14 +65,16 @@ class BibaBoba:
             loc1=list()
             loc1=locindex(msg[i+1])
             if loc[1]==loc1[1]:
-                print("{}{}".format(my_matrix[(loc[0]+1)%5][loc[1]],my_matrix[(loc1[0]+1)%5][loc1[1]]),end=' ')
+                print("{}{}".format(me_mat[(loc[0]+1)%5][loc[1]],me_mat[(loc1[0]+1)%5][loc1[1]]),end=' ')
             elif loc[0]==loc1[0]:
-                print("{}{}".format(my_matrix[loc[0]][(loc[1]+1)%5],my_matrix[loc1[0]][(loc1[1]+1)%5]),end=' ')  
+                print("{}{}".format(me_mat[loc[0]][(loc[1]+1)%5],me_mat[loc1[0]][(loc1[1]+1)%5]),end=' ')  
             else:
-                print("{}{}".format(my_matrix[loc[0]][loc1[1]],my_matrix[loc1[0]][loc[1]]),end=' ')    
+                print("{}{}".format(me_mat[loc[0]][loc1[1]],me_mat[loc1[0]][loc[1]]),end=' ')    
             i=i+2        
                      
     def decrypt():  #decryption
+        me_mat=list()
+        me_mat=resultation()
         msg=str(input("ENTER CIPHER TEXT: "))
         msg=msg.upper()
         msg=msg.replace(" ", "")
@@ -82,11 +86,11 @@ class BibaBoba:
             loc1=list()
             loc1=locindex(msg[i+1])
             if loc[1]==loc1[1]:
-                print("{}{}".format(my_matrix[(loc[0]-1)%5][loc[1]],my_matrix[(loc1[0]-1)%5][loc1[1]]),end=' ')
+                print("{}{}".format(me_mat[(loc[0]-1)%5][loc[1]],me_mat[(loc1[0]-1)%5][loc1[1]]),end=' ')
             elif loc[0]==loc1[0]:
-                print("{}{}".format(my_matrix[loc[0]][(loc[1]-1)%5],my_matrix[loc1[0]][(loc1[1]-1)%5]),end=' ')  
+                print("{}{}".format(me_mat[loc[0]][(loc[1]-1)%5],me_mat[loc1[0]][(loc1[1]-1)%5]),end=' ')  
             else:
-                print("{}{}".format(my_matrix[loc[0]][loc1[1]],my_matrix[loc1[0]][loc[1]]),end=' ')    
+                print("{}{}".format(me_mat[loc[0]][loc1[1]],me_mat[loc1[0]][loc[1]]),end=' ')    
             i=i+2
 
 
