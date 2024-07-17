@@ -8,9 +8,9 @@ class BibaBoba:
     def matrix(x,y,initial):
         return [[initial for i in range(x)] for j in range(y)]
 
-    def resultation():
+    def resultation(key):
         result=list()
-        for c in keys(key): #storing key
+        for c in BibaBoba.keys(key): #storing key
             if c not in result:
                 if c=='J':
                     result.append('I')
@@ -27,27 +27,27 @@ class BibaBoba:
                 else:
                     result.append(chr(i))
         k=0
-        my_matrix=matrix(5,5,0) #initialize matrix
+        my_matrix=BibaBoba.matrix(5,5,0) #initialize matrix
         for i in range(0,5): #making matrix
             for j in range(0,5):
                 my_matrix[i][j]=result[k]
                 k+=1
         return my_matrix
         
-    def locindex(c): #get location of each character
+    def locindex(key, c): #get location of each character
         loc=list()
         if c=='J':
             c='I'
-        for i ,j in enumerate(my_matrix):
+        for i ,j in enumerate(BibaBoba.resultation(key)):
             for k,l in enumerate(j):
                 if c==l:
                     loc.append(i)
                     loc.append(k)
                     return loc
                 
-    def encrypt(msg):
+    def encrypt(key, msg):
         me_mat=list()
-        me_mat=resultation()
+        me_mat=BibaBoba.resultation(key)
         '''msg=str(input("ENTER MSG: "))'''
         msg=msg.upper()
         msg=msg.replace(" ", "")             
@@ -61,9 +61,9 @@ class BibaBoba:
         print("CIPHER TEXT:",end=' ')
         while i<len(msg):
             loc=list()
-            loc=locindex(msg[i])
+            loc=BibaBoba.locindex(key, msg[i])
             loc1=list()
-            loc1=locindex(msg[i+1])
+            loc1=BibaBoba.locindex(key, msg[i+1])
             if loc[1]==loc1[1]:
                 print("{}{}".format(me_mat[(loc[0]+1)%5][loc[1]],me_mat[(loc1[0]+1)%5][loc1[1]]),end=' ')
             elif loc[0]==loc1[0]:
@@ -72,9 +72,9 @@ class BibaBoba:
                 print("{}{}".format(me_mat[loc[0]][loc1[1]],me_mat[loc1[0]][loc[1]]),end=' ')    
             i=i+2        
                      
-    def decrypt(msg):  #decryption
+    def decrypt(key, msg):  #decryption
         me_mat=list()
-        me_mat=resultation()
+        me_mat=BibaBoba.resultation(key)
         '''msg=str(input("ENTER CIPHER TEXT: "))'''
         msg=msg.upper()
         msg=msg.replace(" ", "")
@@ -82,9 +82,9 @@ class BibaBoba:
         i=0
         while i<len(msg):
             loc=list()
-            loc=locindex(msg[i])
+            loc=BibaBoba.locindex(key, msg[i])
             loc1=list()
-            loc1=locindex(msg[i+1])
+            loc1=BibaBoba.locindex(key, msg[i+1])
             if loc[1]==loc1[1]:
                 print("{}{}".format(me_mat[(loc[0]-1)%5][loc[1]],me_mat[(loc1[0]-1)%5][loc1[1]]),end=' ')
             elif loc[0]==loc1[0]:
@@ -92,5 +92,3 @@ class BibaBoba:
             else:
                 print("{}{}".format(me_mat[loc[0]][loc1[1]],me_mat[loc1[0]][loc[1]]),end=' ')    
             i=i+2
-
-
