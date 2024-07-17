@@ -45,10 +45,10 @@ class BibaBoba:
                     loc.append(k)
                     return loc
                 
-    def encrypt():
+    def encrypt(msg):
         me_mat=list()
         me_mat=resultation()
-        msg=str(input("ENTER MSG: "))
+        '''msg=str(input("ENTER MSG: "))'''
         msg=msg.upper()
         msg=msg.replace(" ", "")             
         i=0
@@ -72,10 +72,10 @@ class BibaBoba:
                 print("{}{}".format(me_mat[loc[0]][loc1[1]],me_mat[loc1[0]][loc[1]]),end=' ')    
             i=i+2        
                      
-    def decrypt():  #decryption
+    def decrypt(msg):  #decryption
         me_mat=list()
         me_mat=resultation()
-        msg=str(input("ENTER CIPHER TEXT: "))
+        '''msg=str(input("ENTER CIPHER TEXT: "))'''
         msg=msg.upper()
         msg=msg.replace(" ", "")
         print("PLAIN TEXT:",end=' ')
