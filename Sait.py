@@ -29,8 +29,8 @@ class BibaBoba:
             if plain_text[i] == plain_text[i+1]:
                 plain_text.insert(i+1, "X")
         for i in range(0, len(plain_text), 2):
-            first_position = find_position(playfair_matrix, plain_text[i])
-            second_position = find_position(playfair_matrix, plain_text[i+1])
+            first_position = BibaBoba.find_position(playfair_matrix, plain_text[i])
+            second_position = BibaBoba.find_position(playfair_matrix, plain_text[i+1])
             if first_position[0] == second_position[0]:
                 encrypted_text += playfair_matrix[first_position[0]][(first_position[1]+1)%5]
                 encrypted_text += playfair_matrix[second_position[0]][(second_position[1]+1)%5]
@@ -47,8 +47,8 @@ class BibaBoba:
         encrypted_text = [letter for letter in encrypted_text]
         decrypted_text = ""
         for i in range(0, len(encrypted_text), 2):
-            first_position = find_position(playfair_matrix, encrypted_text[i])
-            second_position = find_position(playfair_matrix, encrypted_text[i+1])
+            first_position = BibaBoba.find_position(playfair_matrix, encrypted_text[i])
+            second_position = BibaBoba.find_position(playfair_matrix, encrypted_text[i+1])
             if first_position[0] == second_position[0]:
                 decrypted_text += playfair_matrix[first_position[0]][(first_position[1]-1)%5]
                 decrypted_text += playfair_matrix[second_position[0]][(second_position[1]-1)%5]
@@ -60,4 +60,3 @@ class BibaBoba:
                 decrypted_text += playfair_matrix[second_position[0]][first_position[1]]
         return decrypted_text 
 
-print(BibaBoba.playfair_encrypt('weghorst', 'dune'))
