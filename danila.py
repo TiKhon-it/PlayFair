@@ -3,6 +3,7 @@ from Caesar import Caesar
 import sys
 from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout, QHBoxLayout, QComboBox, QLabel, QLineEdit, QTextEdit, QApplication
 from PyQt5.QtGui import QFont
+from playFair import BibaBoba
 
 
 class Encrypt(QWidget):
@@ -17,8 +18,8 @@ class Encrypt(QWidget):
         u4 = QHBoxLayout(self)
 
         self.cypher = QComboBox(self)
-        self.cypher.addItem("Виженер")
-        self.cypher.addItem("Цезарь")
+        self.cypher.addItem("Зашифровка")
+        self.cypher.addItem("Расшифровкa")
         self.cypher.setFont(QFont("Times", 16))
         u1.addWidget(self.cypher, 1)
 
@@ -39,8 +40,7 @@ class Encrypt(QWidget):
         u2.addWidget(self.key, 1)
 
         self.label = QLabel(self)
-        self.label.setText('''Открытый
-        текст:''')
+        self.label.setText('''Надо зашифровать:''')
         self.label.setStyleSheet(
             "background-color: {}".format('#c4d1ff'))
         self.label.setFont(QFont("Times", 16))
@@ -52,8 +52,7 @@ class Encrypt(QWidget):
         u3.addWidget(self.plaintext, 1)
 
         self.label = QLabel(self)
-        self.label.setText('''Шифро-
-        текст:''')
+        self.label.setText('''Ответ:''')
         self.label.setStyleSheet(
             "background-color: {}".format('#c4d1ff'))
         self.label.setFont(QFont("Times", 16))
@@ -65,7 +64,7 @@ class Encrypt(QWidget):
         self.ciphertext.setObjectName("ciphertext")
         u4.addWidget(self.ciphertext, 1)
 
-        self.btn = QPushButton('Зашифровать', self)
+        self.btn = QPushButton('Готово', self)
         self.btn.resize(1100, 50)
         self.btn.clicked.connect(self.encryption)
         self.btn.setFont(QFont("Times", 16))
@@ -75,13 +74,16 @@ class Encrypt(QWidget):
         plaintext = self.plaintext.toPlainText()
         key = self.key.text()
         self.ciphertext.setEnabled(True)
-        if self.cypher.currentText() == "Виженер":
-            self.ciphertext.setPlainText(Vigenere.encrypt(plaintext, key))
-        elif self.cypher.currentText() == "Цезарь":
-            if not key.isdigit():
-                self.key.setText("Ключ должен быть числом")
+        if self.cypher.currentText() == "Зашифровка":
+            if not key.isalpha():
+                self.key.setText("Ключ должен быть написан английскими буквами")
             else:
-                self.ciphertext.setPlainText(Caesar.encrypt(plaintext, key))
+                self.ciphertext.setPlainText(BibaBoba.playfair_encrypt(plaintext, key))
+        elif self.cypher.currentText() == "Расшифровкa":
+            if not key.isalpha():
+                self.key.setText("Ключ должен быть написан английскими буквами")
+            else:
+                self.ciphertext.setPlainText(BibaBoba.playfair_decrypt(plaintext, key))
 
                 
 if __name__ == "__main__":
